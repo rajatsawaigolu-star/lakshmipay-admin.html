@@ -1,0 +1,18 @@
+<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><title>Create Shagun Gift</title><style>body{font-family:Poppins;background:#fff9e6;margin:0;padding:20px} .step{background:#fff;border-radius:18px;padding:18px;margin-bottom:15px;box-shadow:0 4px 12px rgba(0,0,0,.08)} .chip{display:inline-block;padding:8px 14px;background:#fff0c0;border-radius:20px;margin:5px;cursor:pointer;border:1px solid #f5d57a} .chip.active{background:#6a0f1a;color:#f5d57a} .btn{width:100%;padding:15px;background:#6a0f1a;color:#f5d57a;border:0;border-radius:12px;font-weight:900;font-size:16px}</style></head><body>
+<h2>🪔 Create Your Shagun Gift</h2>
+<div class="step"><b>1. Occasion</b><br><span class="chip" onclick="sel(this,'occasion','Birthday')">🎂 Birthday</span><span class="chip" onclick="sel(this,'occasion','Diwali')">🪔 Diwali</span><span class="chip" onclick="sel(this,'occasion','Rakhi')">🎀 Rakhi</span><span class="chip" onclick="sel(this,'occasion','Wedding')">💍 Wedding</span><span class="chip" onclick="sel(this,'occasion','Love')">❤️ Love</span></div>
+<div class="step"><b>2. Amount (Shagun)</b><br><span class="chip" onclick="sel(this,'amount','21')">₹21</span><span class="chip" onclick="sel(this,'amount','51')">₹51</span><span class="chip" onclick="sel(this,'amount','101')">₹101</span><span class="chip" onclick="sel(this,'amount','501')">₹501</span></div>
+<div class="step"><b>3. To Whom</b><br><input id="rname" placeholder="Recipient Name - ex: Priya" style="width:100%;padding:12px;border-radius:10px;border:1px solid #ddd"><br><br><input id="msg" placeholder="Your Message - Happy Rakhi Bangaram" style="width:100%;padding:12px;border-radius:10px;border:1px solid #ddd"><br><br><input type="file" id="photo"></div>
+<div class="step"><button class="btn" onclick="preview()">✨ Preview Gift & Pay from Wallet</button></div>
+<div id="previewBox"></div>
+<script>let data={};function sel(el,k,v){el.parentElement.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));el.classList.add('active');data[k]=v}
+function preview(){
+  data.rname=document.getElementById('rname').value; data.msg=document.getElementById('msg').value;
+  if(!data.occasion||!data.amount||!data.rname){alert('Occasion, Amount, Name required');return}
+  document.getElementById('previewBox').innerHTML=`<div class="step" style="text-align:center;background:linear-gradient(180deg,#6a0f1a,#3a0a0e);color:#f5d57a"><h1>🎁</h1><h2>For ${data.rname}</h2><p>${data.occasion} - ₹${data.amount}</p><p>"${data.msg}"</p><p style="font-size:12px">Powered by LakshmiPay Original QR</p><button class="btn" style="background:#f5d57a;color:#6a0f1a" onclick="createGift()">Pay ₹${data.amount} from Wallet & Send</button></div>`;
+}
+async function createGift(){
+  // Call backend to deduct wallet and create gift
+  alert('Wallet deduct + gift link generate - Next step lo backend connect chestam. Data:'+JSON.stringify(data));
+}
+</script></body></html>
